@@ -173,11 +173,12 @@ class RectSelector:
                 if x1-x0 > 0 and y1-y0 > 0:
                     self.drag_rect = (x0, y0, x1, y1)
             else:
-                rect = self.drag_rect
-                self.drag_start = None
-                self.drag_rect = None
-                if rect:
-                    self.callback(rect)
+                if event != cv2.EVENT_FLAG_LBUTTON:
+                    rect = self.drag_rect
+                    self.drag_start = None
+                    self.drag_rect = None
+                    if rect:
+                        self.callback(rect)
     def draw(self, vis):
         if not self.drag_rect:
             return False
